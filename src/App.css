@@ -7,10 +7,17 @@ body {
     padding-left: 30px;
   }
 
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
+  .board-row {
+    display: flex;
+  }
+
+  .part {
+    border: 1px solid red;
+    padding: 10px;
+  }
+
+  .part-row {
+    display: flex;
   }
 
   .status {
@@ -36,15 +43,3 @@ body {
     outline: none;
   }
 
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .game-info {
-    margin-left: 20px;
-  }
