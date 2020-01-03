@@ -1,17 +1,16 @@
 import React from 'react';
 
-class Square extends React.Component {
-    constructor(props){
-        super(props)
-    }
+function Square(props) {
 
-    render(){
-        return(
-            <button className="square">
-                {this.props.value}
-            </button>
-        )
-    }
+    return(
+        <input
+            className="square"
+            type="text"
+            pattern="[0-9]"
+            onChange={(e) => props.onChange(e.target.value)}
+        />
+    )
+
 }
 
 export default Square;
