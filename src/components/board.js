@@ -1,49 +1,76 @@
 import React from 'react';
+import Part from './part';
 import Square from './square';
 import '../App.css';
+import LevelEasy from '../levels/easy';
 
 class Board extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            squares: Array(9).fill(null)
+            squares: [
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+                Array(9).fill(null),
+            ]
         }
+        this.level = new LevelEasy();
     }
 
-    handleInput(value, i) {
-        const squares = this.state.squares.slice();
-        squares[i] = value;
-        this.setState({squares: squares});
-        console.log('what is current state?', this.state)
+    startGame() {
+        let updatedSquares = this.state.squares.slice();
+        updatedSquares = this.level.initialGame;
+        this.setState({squares: updatedSquares})
     }
 
-    renderSquare(i) {
+    handleInput(partNumber, squareNumber, event) {
+        const value = event.target.value
+        const updatedSquares = this.state.squares.slice();
+
+        updatedSquares[partNumber][squareNumber] = value;
+        this.setState({squares: updatedSquares});
+    }
+
+    renderPart(partNumber) {
         return (
-            <Square value={this.state.squares[i]}
-            onChange = {(v) => this.handleInput(v, i)}
+            <Part
+                onChange={(squareNumber, e) => this.handleInput(partNumber, squareNumber, e)}
+                squares={this.state.squares[partNumber]}
             />
         )
     }
 
     render() {
         return(
-            <div className="board">
-                <div className="board-row">
-                {this.renderSquare(0)}
-                {this.renderSquare(1)}
-                {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                {this.renderSquare(3)}
-                {this.renderSquare(4)}
-                {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                {this.renderSquare(6)}
-                {this.renderSquare(7)}
-                {this.renderSquare(8)}
-                </div>
-          </div>
+            <div>
+                <div className="board">
+                    <div className="board-row">
+                    {this.renderPart(0)}
+                    {this.renderPart(1)}
+                    {this.renderPart(2)}
+                    </div>
+                    <div className="board-row">
+                    {this.renderPart(3)}
+                    {this.renderPart(4)}
+                    {this.renderPart(5)}
+                    </div>
+                    <div className="board-row">
+                    {this.renderPart(6)}
+                    {this.renderPart(7)}
+                    {this.renderPart(8)}
+                    </div>
+            </div>
+            <button
+                onClick={() => this.startGame()}>
+                Start easy game
+            </button>
+        </div>
         )
     }
 }
