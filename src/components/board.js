@@ -4,11 +4,25 @@ import '../App.css';
 
 class Board extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            squares: Array(9).fill(null)
+        }
+    }
+
+    handleInput(value, i) {
+        const squares = this.state.squares.slice();
+        squares[i] = value;
+        this.setState({squares: squares});
+        console.log('what is current state?', this.state)
     }
 
     renderSquare(i) {
-        return <Square value={i}/>
+        return (
+            <Square value={this.state.squares[i]}
+            onChange = {(v) => this.handleInput(v, i)}
+            />
+        )
     }
 
     render() {
