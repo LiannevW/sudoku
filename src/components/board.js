@@ -21,6 +21,7 @@ class Board extends React.Component {
             ]
         }
         this.level = new LevelEasy();
+        this.lives = 3;
     }
 
     startGame() {
@@ -29,12 +30,40 @@ class Board extends React.Component {
         this.setState({squares: updatedSquares})
     }
 
+    checkHasWon() {
+        const answer  = this.state.squares;
+        const solution =  this.level.solutionGame;
+
+        if (JSON.stringify(answer) === JSON.stringify(solution)) {
+            window.alert("YOU WON!!!")
+        }
+    }
+
+    gameOver() {
+        window.alert("game over!!!")
+    }
+
+    checkHasLost() {
+        this.lives = this.lives - 1;
+        if (this.lives > 0) {
+            return;
+        } else {
+            this.gameOver()
+        }
+    };
+
     handleInput(partNumber, squareNumber, event) {
-        const value = event.target.value
+        const squareAnswer = parseInt(event.target.value);
+        const squareSolution = this.level.solutionGame[partNumber][squareNumber]
         const updatedSquares = this.state.squares.slice();
 
-        updatedSquares[partNumber][squareNumber] = value;
-        this.setState({squares: updatedSquares});
+        if (squareAnswer === squareSolution) {
+            updatedSquares[partNumber][squareNumber] = squareAnswer;
+            this.setState({squares: updatedSquares});
+            this.checkHasWon();
+        } else {
+            this.checkHasLost();
+        }
     }
 
     renderPart(partNumber) {
