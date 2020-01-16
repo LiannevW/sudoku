@@ -1,17 +1,17 @@
 import React from 'react'
 
-class LevelEasy extends React.Component {
+class LevelMedium extends React.Component {
     constructor(props) {
         super(props);
 
         this.initialGame = [
-            [4, 7, null, 1, 2, 6, null, null, 3],
+            [null, 7, null, 1, 2, 6, null, null, 3],
             [1, null, null, 3, null, null, null, 7, 2],
-            [9, 3, 2, 8, null, 7, null, 6, null],
-            [null, null, null, 2, 5, 7, 8, null, null],
+            [null, null, null, null, null, 7, null, 6, null],
+            [null, null, null, null, 5, null, 8, null, null],
             [null, null, 7, 8, 3, null, null, null, 1],
             [null, 2, null, 1, null, null, 3, 7, 4],
-            [7, null, 2, null, null, 5, 4, null, 8],
+            [7, null, null, null, null, 5, 4, null, 8],
             [null, 9, 5, null, null, null, 6, 2, null],
             [6, null, 3, 2, null, null, null, null, 5]
         ];
@@ -30,4 +30,4 @@ class LevelEasy extends React.Component {
     }
 }
 
-export default LevelEasy;
+export default LevelMedium;

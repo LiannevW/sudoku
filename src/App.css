@@ -7,13 +7,38 @@ body {
     padding-left: 30px;
   }
 
+  .game {
+    width: 330px;
+    margin: 0 auto 0 auto;
+  }
+
+  button {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 5px 0 5px;
+  }
+
+  .game-intro {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .board {
+    border: 5px solid red;
+  }
+
   .board-row {
     display: flex;
   }
 
-  .part {
-    border: 1px solid red;
-    padding: 10px;
+  .board-row:nth-of-type(1),
+  .board-row:nth-of-type(2) {
+    border-bottom: 2px solid black;
+  }
+
+  .part:nth-of-type(1),
+  .part:nth-of-type(2) {
+    border-right: 2px solid black;
   }
 
   .part-row {
